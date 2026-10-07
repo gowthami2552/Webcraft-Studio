@@ -57,7 +57,7 @@ export default function Services() {
     }
   }, [quoteService, quotePackage]);
 
-  const categories = ['All', 'Websites', 'Design', 'AI & Development'];
+  const categories = ['All', 'Websites', 'Design', 'Development'];
   
   const filteredServices = activeCategory === 'All' 
     ? servicesData 
@@ -119,7 +119,7 @@ export default function Services() {
           <div className="section-label">Services & Pricing</div>
           <h1 style={{ fontSize: 'clamp(36px,6vw,64px)', marginBottom: 20, maxWidth: 800 }}>Digital Solutions Built Around Your Ideas</h1>
           <p style={{ fontSize: 18, maxWidth: 700, color: 'var(--text2)', marginBottom: 40, lineHeight: 1.8 }}>
-            From simple landing pages and portfolios to AI-powered websites and custom web applications, we create affordable digital experiences for individuals, startups and businesses.
+            From simple landing pages and portfolios to custom web applications and full business platforms, we create affordable digital experiences for individuals, startups and businesses.
           </p>
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
             <button onClick={() => openQuoteModal()} className="btn btn-primary btn-lg">Get a Free Quote</button>

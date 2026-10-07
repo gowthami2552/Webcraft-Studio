@@ -8,7 +8,7 @@ const SERVICES_LINKS = [
   { label: 'Landing Page', to: '/services/landing-pages' },
   { label: 'E-commerce', to: '/services/ecommerce' },
   { label: 'UI/UX Design', to: '/services/ui-ux' },
-  { label: 'AI Website', to: '/services/ai-websites' },
+  { label: 'Website Redesign', to: '/services/redesign' },
 ];
 
 const QUICK_LINKS = [

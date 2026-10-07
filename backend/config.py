@@ -119,16 +119,6 @@ SERVICES_CONFIG = [
         "features": ["User research", "Wireframes", "User flows", "UI design", "Responsive design", "Design systems", "Prototyping"],
     },
     {
-        "id": "ai-websites",
-        "name": "AI Website",
-        "slug": "ai-websites",
-        "icon": "cpu",
-        "description": "Integrate AI APIs to create smart web applications and dashboards.",
-        "starting_price": 9999,
-        "delivery": "7–14 days",
-        "features": ["AI chatbots", "AI assistants", "AI content tools", "AI productivity applications", "AI dashboards", "AI document tools"],
-    },
-    {
         "id": "custom-web-app",
         "name": "Custom Web Application",
         "slug": "custom-web-app",

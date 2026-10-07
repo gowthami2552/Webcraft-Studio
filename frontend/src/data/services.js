@@ -75,24 +75,9 @@ export const servicesData = [
     ]
   },
   {
-    id: 'ai',
-    name: 'AI Website',
-    category: 'AI & Development',
-    icon: 'Brain',
-    shortDesc: 'Bring AI into your website to automate tasks, improve customer experiences and create smarter digital products.',
-    startingPrice: '5,999',
-    features: ['AI Chatbots', 'OpenAI Integration', 'Smart Automations'],
-    bestFor: 'AI startups, SaaS products, educational platforms and businesses.',
-    pricing: [
-      { name: 'Basic', price: '5,999', features: ['Responsive website', 'Basic AI feature', 'AI API integration', 'Up to 5 pages'] },
-      { name: 'Standard', price: '9,999', popular: true, features: ['Custom UI', 'AI chatbot', 'AI-powered feature', 'API integration', 'Database integration', 'Up to 8 pages'] },
-      { name: 'Premium', price: '14,999', features: ['Custom AI website/application', 'Multiple AI features', 'AI chatbot', 'Advanced API integrations', 'Database', 'Admin dashboard', 'Deployment'] }
-    ]
-  },
-  {
     id: 'webapp',
     name: 'Custom Web Application',
-    category: 'AI & Development',
+    category: 'Development',
     icon: 'Code',
     shortDesc: 'Turn your idea into a complete web application built around your specific business requirements.',
     startingPrice: '9,999',

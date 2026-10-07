@@ -6,7 +6,7 @@ import { CheckCircle, ArrowRight, ArrowLeft, AlertCircle } from 'lucide-react';
 import VectorBackground from '../components/vectors/VectorBackground';
 import ProcessStepVector from '../components/vectors/ProcessStepVector';
 
-const SERVICES = ['Portfolio Website','Business Website','Landing Page','E-commerce Website','AI Website','Custom Web Application','UI/UX Design','Website Redesign','Other'];
+const SERVICES = ['Portfolio Website','Business Website','Landing Page','E-commerce Website','Custom Web Application','UI/UX Design','Website Redesign','Other'];
 const DESIGN_PREFS = ['Minimal','Modern','Premium','Creative','Corporate','Dark','Light'];
 const BUDGETS = ['₹3,000 – ₹5,000','₹5,000 – ₹10,000','₹10,000 – ₹20,000','₹20,000+'];
 const TIMELINES = ['ASAP','1 week','2 weeks','1 month','Flexible'];
