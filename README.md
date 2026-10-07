@@ -41,7 +41,7 @@ Follow these steps to run the project locally.
    ```bash
    python app.py
    ```
-   *The backend will run on http://localhost:5000*
+  
 
 ### 2. Setup the Frontend
 1. Open a second terminal and navigate to the `frontend` directory:
@@ -62,14 +62,3 @@ Follow these steps to run the project locally.
    ```
    *The frontend will run on http://localhost:5173*
 
-## Demo Accounts
-
-The database comes pre-seeded with the following accounts:
-
-**Admin Account**
-- Email: `admin@webcraftstudio.com`
-- Password: `Admin@2026`
-
-**Client Account**
-- Email: `demo@webcraftstudio.com`
-- Password: `Demo@2026`
