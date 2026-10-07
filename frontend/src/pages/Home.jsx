@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Code, Briefcase, Globe, Monitor, ShoppingBag, Palette, Brain, RefreshCw, Star, Leaf } from 'lucide-react';
+import { ArrowRight, Code, Briefcase, Globe, Monitor, ShoppingBag, Palette, Brain, RefreshCw, Leaf } from 'lucide-react';
 import { contentAPI } from '../api';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
@@ -52,36 +52,17 @@ function SvcCard({ s }) {
   );
 }
 
-function TCard({ t }) {
-  return (
-    <div className="card" style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-      <div style={{ display: 'flex', gap: 2 }}>{[...Array(t.rating)].map((_, i) => <Star key={i} size={14} fill="#F59E0B" color="#F59E0B" />)}</div>
-      <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--text2)', flex: 1 }}>&#34;{t.text}&#34;</p>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12, borderTop: '1px solid var(--border)', paddingTop: 16 }}>
-        <div style={{ width: 40, height: 40, background: 'linear-gradient(135deg,var(--accent),var(--accent2))', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 14, color: '#fff' }}>{t.avatar}</div>
-        <div>
-          <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--text)' }}>{t.name}</div>
-          <div style={{ fontSize: 12, color: 'var(--text3)' }}>{t.role} · {t.company}</div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function Home() {
   const [services, setServices] = useState([]);
-  const [testimonials, setTestimonials] = useState([]);
   const [portfolio, setPortfolio] = useState([]);
   const heroRef = useScrollReveal();
   const svcRef = useScrollReveal();
   const workRef = useScrollReveal();
   const stepsRef = useScrollReveal();
-  const tRef = useScrollReveal();
 
   useEffect(() => {
     document.title = 'WebCraft Studio — Websites Built Around Your Ideas';
     contentAPI.getServices().then(r => setServices(r.data.services || [])).catch(() => {});
-    contentAPI.getTestimonials().then(r => setTestimonials(r.data.testimonials || [])).catch(() => {});
     contentAPI.getFeaturedPortfolio().then(r => setPortfolio(r.data.projects?.slice(0, 4) || [])).catch(() => {});
   }, []);
 
@@ -218,19 +199,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section className="section">
-        <div className="container">
-          <div  className="page-enter">
-            <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-end', marginBottom:40, flexWrap:'wrap', gap:16 }}>
-              <div><div className="section-label">Testimonials</div><h2 style={{ fontSize:'clamp(26px,3.5vw,40px)' }}>What Our Clients Say</h2><p>We're proud to work with amazing clients and help them achieve their goals.</p></div>
-            </div>
-            <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:20 }} className="t-grid">
-              {testimonials.slice(0,3).map((t,i) => <TCard key={i} t={t} />)}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* FINAL CTA */}
       <section style={{ padding: '0 24px 80px' }}>
