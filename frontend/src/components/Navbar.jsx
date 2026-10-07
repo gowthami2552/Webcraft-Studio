@@ -5,6 +5,8 @@ import { contentAPI } from '../api';
 import { Search, X, Menu, ChevronDown, LayoutDashboard, LogOut, User, Bell, Briefcase } from 'lucide-react';
 import './Navbar.css';
 
+import VectorLogo from './vectors/VectorLogo';
+
 const NAV_LINKS = [
   { label: 'Home', to: '/' },
   { label: 'Our Services', to: '/services' },
@@ -125,7 +127,7 @@ export default function Navbar() {
                 setMobileOpen(false);
               }
             }}>
-              <div className="nav-logo-icon">W</div>
+              <VectorLogo size={36} />
               <span className="nav-logo-text">WebCraft Studio</span>
             </Link>
 

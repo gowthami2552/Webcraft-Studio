@@ -5,6 +5,10 @@ import { ArrowRight, Code, Briefcase, Globe, Monitor, ShoppingBag, Palette, Brai
 import { servicesData } from '../data/services';
 import { contentAPI } from '../api';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import VectorBackground from '../components/vectors/VectorBackground';
+import ServiceVectorIcon from '../components/vectors/ServiceVectorIcon';
+import ProcessStepVector from '../components/vectors/ProcessStepVector';
+import VectorWaveDivider from '../components/vectors/VectorWaveDivider';
 
 const ICON_MAP = {
   Briefcase: Briefcase,
@@ -109,8 +113,9 @@ export default function Services() {
       `}</style>
 
       {/* HERO SECTION */}
-      <section style={{ padding: '80px 0 60px', background: 'var(--bg2)', borderBottom: '1px solid var(--border)' }}>
-        <div className="container">
+      <section style={{ padding: '80px 0 60px', background: 'var(--bg2)', borderBottom: '1px solid var(--border)', position: 'relative', overflow: 'hidden' }}>
+        <VectorBackground style={{ opacity: 0.4 }} />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div className="section-label">Services & Pricing</div>
           <h1 style={{ fontSize: 'clamp(36px,6vw,64px)', marginBottom: 20, maxWidth: 800 }}>Digital Solutions Built Around Your Ideas</h1>
           <p style={{ fontSize: 18, maxWidth: 700, color: 'var(--text2)', marginBottom: 40, lineHeight: 1.8 }}>
@@ -123,9 +128,11 @@ export default function Services() {
         </div>
       </section>
 
+      <VectorWaveDivider color="var(--bg2)" flip />
+
       {/* SERVICES LISTING */}
-      <section id="pricing" className="section">
-        <div className="container">
+      <section id="pricing" className="section" style={{ position: 'relative' }}>
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div className="filters-scroll" style={{ display: 'flex', gap: 12, marginBottom: 48 }}>
             {categories.map(cat => (
               <button 
@@ -140,11 +147,12 @@ export default function Services() {
 
           <div ref={ref} style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }} className="svc-pg reveal">
             {filteredServices.map(service => {
-              const Icon = ICON_MAP[service.icon] || Code;
               return (
-                <div key={service.id} className="card" style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                <div key={service.id} className="card vector-card-interactive" style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                    <div style={{ width: 52, height: 52, background: 'rgba(111,78,55,0.1)', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent)' }}><Icon size={24} /></div>
+                    <div style={{ width: 56, height: 56, background: 'rgba(64,45,34,0.06)', borderRadius: 14, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <ServiceVectorIcon type={service.icon || service.id} size={42} />
+                    </div>
                   </div>
                   <div>
                     <h2 style={{ fontSize: 22, fontWeight: 700, marginBottom: 10 }}>{service.name}</h2>
@@ -180,8 +188,9 @@ export default function Services() {
       </section>
 
       {/* HOW WE WORK */}
-      <section className="section" style={{ background: 'var(--bg2)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
-        <div className="container">
+      <section className="section" style={{ background: 'var(--bg2)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', position: 'relative' }}>
+        <VectorBackground style={{ opacity: 0.3 }} />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div ref={workRef} className="reveal">
             <div className="section-header">
               <h2>How We Work</h2>
@@ -197,7 +206,9 @@ export default function Services() {
                 { n: '05', title: 'Launch', desc: 'Your final project is deployed and ready to use.' }
               ].map((step, i) => (
                 <div key={i} className="timeline-item">
-                  <div className="timeline-num">{step.n}</div>
+                  <div style={{ width: 64, height: 64, background: 'var(--bg)', border: '1.5px solid var(--border)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16, boxShadow: '0 4px 16px rgba(64,45,34,0.08)' }}>
+                    <ProcessStepVector stepNumber={i + 1} size={46} />
+                  </div>
                   <h3 style={{ fontSize: 17, marginBottom: 8 }}>{step.title}</h3>
                   <p style={{ fontSize: 14 }}>{step.desc}</p>
                 </div>

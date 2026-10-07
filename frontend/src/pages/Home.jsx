@@ -3,6 +3,12 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Code, Briefcase, Globe, Monitor, ShoppingBag, Palette, Brain, RefreshCw, Leaf } from 'lucide-react';
 import { contentAPI } from '../api';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import VectorBackground from '../components/vectors/VectorBackground';
+import HeroVectorWorkspace from '../components/vectors/HeroVectorWorkspace';
+import ServiceVectorIcon from '../components/vectors/ServiceVectorIcon';
+import ProcessStepVector from '../components/vectors/ProcessStepVector';
+import VectorWaveDivider from '../components/vectors/VectorWaveDivider';
+import VectorProjectCardPreview from '../components/vectors/VectorProjectCardPreview';
 
 const ICON_MAP = { briefcase: Briefcase, building: Globe, layout: Monitor, 'shopping-cart': ShoppingBag, 'pen-tool': Palette, cpu: Brain, code: Code, 'refresh-cw': RefreshCw };
 
@@ -23,15 +29,17 @@ const STEPS = [
 const TRUST = ['Web Design', 'Development', 'UI/UX', 'AI Solutions'];
 
 function SvcCard({ s }) {
-  const Icon = ICON_MAP[s.icon] || Code;
   return (
     <Link to={`/services/${s.slug}`} style={{ textDecoration: 'none' }}>
       <div
+        className="vector-card-interactive"
         style={{ background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 16, padding: 24, transition: 'all .25s ease', cursor: 'pointer', height: '100%', display: 'flex', flexDirection: 'column', gap: 12 }}
         onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(64,45,34,.4)'; e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 12px 40px rgba(64,45,34,.15)'; }}
         onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = ''; }}
       >
-        <div style={{ width: 44, height: 44, background: 'rgba(64,45,34,.12)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent)' }}><Icon size={20} /></div>
+        <div style={{ width: 48, height: 48, background: 'rgba(64,45,34,.08)', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <ServiceVectorIcon type={s.icon || s.slug || 'code'} size={36} />
+        </div>
         <div>
           <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 6, color: 'var(--text)' }}>{s.name}</h3>
           <p style={{ fontSize: 13, color: 'var(--text2)', lineHeight: 1.6, marginBottom: 12 }}>{s.description}</p>
@@ -84,10 +92,11 @@ export default function Home() {
 
       {/* HERO */}
       <section style={{ minHeight:'100vh', display:'flex', alignItems:'center', position:'relative', overflow:'hidden', paddingTop:100, paddingBottom:80 }}>
+        <VectorBackground />
         <div style={{ position:'absolute', top:'20%', left:'50%', transform:'translateX(-50%)', width:800, height:800, background:'radial-gradient(circle,rgba(69,48,32,.06) 0%,transparent 70%)', pointerEvents:'none' }} />
-        <div className="container">
-          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:60, alignItems:'center' }} className="hero-grid">
-            <div  className="page-enter">
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:40, alignItems:'center' }} className="hero-grid">
+            <div className="page-enter">
               <div style={{ display:'flex', gap:16, marginBottom:24, flexWrap:'wrap' }}>
                 {TRUST.map((item,i) => <span key={i} style={{ fontSize:12, color:'var(--text3)', fontWeight:500, display:'flex', alignItems:'center', gap:6 }}>{i>0&&<span style={{ color:'var(--border)' }}>•</span>}<span style={{ color:'var(--accent)' }}>✦</span> {item}</span>)}
               </div>
@@ -100,31 +109,20 @@ export default function Home() {
                 <Link to="/work" className="btn btn-secondary btn-lg">View Our Work</Link>
               </div>
             </div>
-            <div style={{ position:'relative', height:460 }} className="hero-preview">
-              {PREVIEW_CARDS.map((card,i) => (
-                <div key={i} className={`f${i}`} style={{ position:'absolute', background:'var(--card)', border:'1px solid var(--border)', borderRadius:16, padding:16, width:190, boxShadow:'0 20px 60px rgba(0,0,0,.4)', ...[{top:30,left:20},{top:10,right:10},{bottom:80,left:0},{bottom:20,right:10}][i] }}>
-                  <div style={{ display:'flex', gap:5, marginBottom:10 }}>{['#EF4444','#F59E0B','#10B981'].map(c=><span key={c} style={{ width:7,height:7,borderRadius:'50%',background:c }} />)}
-                    <div style={{ flex:1,height:7,background:'var(--card2)',borderRadius:4,marginLeft:4 }} />
-                  </div>
-                  <div style={{ height:5,background:card.color,borderRadius:3,marginBottom:7,opacity:.8,width:'55%' }} />
-                  <div style={{ height:3,background:'var(--border)',borderRadius:2,marginBottom:5 }} />
-                  <div style={{ height:3,background:'var(--border)',borderRadius:2,marginBottom:5,width:'80%' }} />
-                  <div style={{ height:40,background:`linear-gradient(135deg,${card.color}22,${card.color}11)`,borderRadius:8,border:`1px solid ${card.color}22`,marginBottom:8 }} />
-                  <div style={{ display:'flex',justifyContent:'space-between',alignItems:'center' }}>
-                    <span style={{ fontSize:10,color:'var(--text3)',fontWeight:600 }}>{card.title}</span>
-                    <span style={{ fontSize:9,background:`${card.color}22`,color:card.color,padding:'2px 6px',borderRadius:4,fontWeight:700 }}>{card.type}</span>
-                  </div>
-                </div>
-              ))}
+            <div className="hero-preview" style={{ display: 'flex', justifyContent: 'center' }}>
+              <HeroVectorWorkspace />
             </div>
           </div>
         </div>
       </section>
 
+      <VectorWaveDivider color="var(--bg2)" />
+
       {/* SERVICES */}
-      <section className="section" style={{ background:'var(--bg2)' }}>
-        <div className="container">
-          <div  className="page-enter">
+      <section className="section" style={{ background:'var(--bg2)', position: 'relative', overflow: 'hidden' }}>
+        <VectorBackground style={{ opacity: 0.35 }} />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <div className="page-enter">
             <div style={{ display:'grid', gridTemplateColumns:'280px 1fr', gap:48, alignItems:'start' }} className="svc-layout">
               <div>
                 <div className="section-label">Our Services</div>
@@ -140,10 +138,12 @@ export default function Home() {
         </div>
       </section>
 
+      <VectorWaveDivider flip color="var(--bg2)" />
+
       {/* RECENT WORK */}
-      <section className="section">
-        <div className="container">
-          <div  className="page-enter">
+      <section className="section" style={{ position: 'relative' }}>
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <div className="page-enter">
             <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-end', marginBottom:40, flexWrap:'wrap', gap:16 }}>
               <div><div className="section-label">Our Work</div><h2 style={{ fontSize:'clamp(26px,3.5vw,40px)', marginBottom:10 }}>Recent Projects</h2><p>Explore some of our latest web development and design projects.</p></div>
               <Link to="/work" className="btn btn-secondary btn-sm">View All</Link>
@@ -152,14 +152,10 @@ export default function Home() {
               {portfolio.map(p => (
                 <Link key={p.id} to={`/work/${p.slug}`} style={{ textDecoration:'none' }}>
                   <div style={{ background:'var(--card)', border:'1px solid var(--border)', borderRadius:16, overflow:'hidden', transition:'all .25s ease' }}
-                    onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-6px)';e.currentTarget.style.boxShadow='0 20px 60px rgba(0,0,0,.4)'}}
+                    onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-6px)';e.currentTarget.style.boxShadow='0 20px 60px rgba(0,0,0,.15)'}}
                     onMouseLeave={e=>{e.currentTarget.style.transform='';e.currentTarget.style.boxShadow=''}}>
-                    <div style={{ height:140, background:`linear-gradient(135deg,${p.image_color}33,${p.image_color}11)`, display:'flex', alignItems:'center', justifyContent:'center' }}>
-                      <div style={{ width:70,height:50,background:p.image_color+'22',border:`1px solid ${p.image_color}44`,borderRadius:8,padding:8,display:'flex',flexDirection:'column',gap:4 }}>
-                        <div style={{ height:4,background:p.image_color,borderRadius:2,width:'50%',opacity:.9 }} />
-                        <div style={{ height:3,background:p.image_color+'55',borderRadius:2 }} />
-                        <div style={{ flex:1,background:p.image_color+'22',borderRadius:4 }} />
-                      </div>
+                    <div style={{ height:140, background:`linear-gradient(135deg,${p.image_color}22,${p.image_color}08)`, display:'flex', alignItems:'center', justifyContent:'center' }}>
+                      <VectorProjectCardPreview category={p.category} color={p.image_color || '#8A7361'} />
                     </div>
                     <div style={{ padding:16 }}>
                       <span className="tag" style={{ marginBottom:8,display:'inline-flex',fontSize:10 }}>{p.category}</span>
@@ -178,9 +174,10 @@ export default function Home() {
       </section>
 
       {/* HOW IT WORKS */}
-      <section className="section" style={{ background:'var(--bg2)' }}>
-        <div className="container">
-          <div  className="page-enter">
+      <section className="section" style={{ background:'var(--bg2)', position: 'relative' }}>
+        <VectorBackground style={{ opacity: 0.35 }} />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <div className="page-enter">
             <div className="section-header center">
               <div className="section-label">How It Works</div>
               <h2>Your Project in 4 Simple Steps</h2>
@@ -188,8 +185,10 @@ export default function Home() {
             </div>
             <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:24 }} className="steps-home">
               {STEPS.map((step,i) => (
-                <div key={i} className="card" style={{ textAlign:'center', padding:'32px 24px' }}>
-                  <div style={{ width:56,height:56,background:'linear-gradient(135deg,rgba(64,45,34,.2),rgba(135,98,70,.1))',border:'1px solid rgba(64,45,34,.3)',borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 16px',fontFamily:'var(--font-heading)',fontWeight:800,fontSize:18,color:'var(--accent)' }}>{step.num}</div>
+                <div key={i} className="card vector-card-interactive" style={{ textAlign:'center', padding:'32px 24px' }}>
+                  <div style={{ margin: '0 auto 16px', display: 'flex', justifyContent: 'center' }}>
+                    <ProcessStepVector stepNumber={i + 1} size={64} />
+                  </div>
                   <h3 style={{ fontSize:16,fontWeight:700,marginBottom:10 }}>{step.title}</h3>
                   <p style={{ fontSize:13,lineHeight:1.65 }}>{step.desc}</p>
                 </div>

@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { Mail, MessageCircle, MapPin, ArrowRight, AlertCircle, CheckCircle } from 'lucide-react';
 import { contentAPI } from '../api';
+import VectorBackground from '../components/vectors/VectorBackground';
+import ContactVectorScene from '../components/vectors/ContactVectorScene';
+import VectorWaveDivider from '../components/vectors/VectorWaveDivider';
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
@@ -19,21 +22,25 @@ export default function Contact() {
   return (
     <div className="page-enter" style={{ paddingTop: 100 }}>
       {/* Hero */}
-      <section style={{ padding: '80px 0 60px', background: 'var(--bg2)', borderBottom: '1px solid var(--border)' }}>
-        <div className="container">
-          <div className="section-label">Contact Us</div>
+      <section style={{ padding: '80px 0 60px', background: 'var(--bg2)', borderBottom: '1px solid var(--border)', position: 'relative', overflow: 'hidden' }}>
+        <VectorBackground style={{ opacity: 0.4 }} />
+        <div className="container" style={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
+          <div className="section-label" style={{ justifyContent: 'center' }}>Contact Us</div>
           <h1 style={{ fontSize: 'clamp(32px,5vw,56px)', marginBottom: 16 }}>Let's start a conversation.</h1>
-          <p style={{ fontSize: 18, maxWidth: 580, color: 'var(--text2)' }}>Have a question, a project idea, or just want to say hi? We'd love to hear from you.</p>
+          <p style={{ fontSize: 18, maxWidth: 580, color: 'var(--text2)', margin: '0 auto' }}>Have a question, a project idea, or just want to say hi? We'd love to hear from you.</p>
         </div>
       </section>
 
-      <section className="section">
-        <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: 60 }} className="contact-grid">
+      <VectorWaveDivider color="var(--bg2)" flip />
+
+      <section className="section" style={{ position: 'relative' }}>
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: 60 }} className="contact-grid">
             {/* Left Info */}
             <div>
-              <h2 style={{ fontSize: 24, marginBottom: 24 }}>Get In Touch</h2>
-              <p style={{ color: 'var(--text2)', marginBottom: 32, lineHeight: 1.7 }}>
+              <ContactVectorScene />
+              <h2 style={{ fontSize: 24, marginBottom: 16 }}>Get In Touch</h2>
+              <p style={{ color: 'var(--text2)', marginBottom: 28, lineHeight: 1.7 }}>
                 Fill out the form and our team will get back to you within 24 hours. For project inquiries, please use our <a href="/start-project" style={{ color: 'var(--accent)', textDecoration: 'underline' }}>project form</a> instead.
               </p>
               

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Mail, MessageCircle, MapPin, ArrowRight } from 'lucide-react';
+import VectorLogo from './vectors/VectorLogo';
 
 const SERVICES_LINKS = [
   { label: 'Portfolio Website', to: '/services/portfolio' },
@@ -27,6 +28,8 @@ export default function Footer() {
       background: '#2F1F16', // Dark brown
       color: '#FFFFFF',
       paddingTop: '80px',
+      position: 'relative',
+      overflow: 'hidden',
     }}>
       <div className="container">
         {/* Main footer grid */}
@@ -40,13 +43,7 @@ export default function Footer() {
           {/* Brand column */}
           <div>
             <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', marginBottom: 16 }}>
-              <div style={{
-                width: 36, height: 36,
-                background: 'linear-gradient(135deg, var(--accent), var(--accent2))',
-                borderRadius: 9, display: 'flex', alignItems: 'center',
-                justifyContent: 'center', color: '#fff', fontWeight: 900, fontSize: 15,
-                fontFamily: 'var(--font-heading)',
-              }}>W</div>
+              <VectorLogo size={36} />
               <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: 18, color: '#FFFFFF' }}>
                 WebCraft Studio
               </span>

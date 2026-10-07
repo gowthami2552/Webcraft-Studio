@@ -1,5 +1,8 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check } from 'lucide-react';
+import VectorBackground from '../components/vectors/VectorBackground';
+import PricingVectorBadge from '../components/vectors/PricingVectorBadge';
+import VectorWaveDivider from '../components/vectors/VectorWaveDivider';
 
 const PLANS = [
   {
@@ -26,27 +29,33 @@ const PLANS = [
 export default function Pricing() {
   return (
     <div className="page-enter" style={{ paddingTop: 100 }}>
-      <section style={{ padding: '80px 0 60px', background: 'var(--bg2)', borderBottom: '1px solid var(--border)' }}>
-        <div className="container" style={{ textAlign: 'center' }}>
+      <section style={{ padding: '80px 0 60px', background: 'var(--bg2)', borderBottom: '1px solid var(--border)', position: 'relative', overflow: 'hidden' }}>
+        <VectorBackground style={{ opacity: 0.4 }} />
+        <div className="container" style={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
           <div className="section-label" style={{ justifyContent: 'center' }}>Pricing</div>
           <h1 style={{ fontSize: 'clamp(32px,5vw,56px)', marginBottom: 16 }}>Simple, Transparent Pricing</h1>
           <p style={{ fontSize: 18, maxWidth: 580, color: 'var(--text2)', margin: '0 auto' }}>Choose the plan that best fits your needs. No hidden fees.</p>
         </div>
       </section>
 
-      <section className="section">
-        <div className="container">
+      <VectorWaveDivider color="var(--bg2)" flip />
+
+      <section className="section" style={{ position: 'relative' }}>
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 32 }} className="pricing-grid">
             {PLANS.map((plan, i) => (
-              <div key={i} style={{
-                background: 'var(--card)', border: `1px solid ${plan.popular ? 'var(--accent)' : 'var(--border)'}`,
+              <div key={i} className="vector-card-interactive" style={{
+                background: 'var(--card)', border: `1.5px solid ${plan.popular ? 'var(--accent)' : 'var(--border)'}`,
                 borderRadius: 24, padding: 40, position: 'relative',
                 transform: plan.popular ? 'translateY(-16px)' : 'none',
-                boxShadow: plan.popular ? '0 20px 40px rgba(64,45,34,0.1)' : 'none',
+                boxShadow: plan.popular ? '0 24px 50px rgba(64,45,34,0.12)' : '0 8px 24px rgba(64,45,34,0.04)',
               }}>
                 {plan.popular && (
                   <div style={{ position: 'absolute', top: -14, left: '50%', transform: 'translateX(-50%)', background: 'var(--accent)', color: '#fff', fontSize: 12, fontWeight: 700, padding: '6px 16px', borderRadius: 100, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Most Popular</div>
                 )}
+                <div style={{ marginBottom: 16 }}>
+                  <PricingVectorBadge planName={plan.name} size={54} />
+                </div>
                 <h3 style={{ fontSize: 22, fontWeight: 700, marginBottom: 8 }}>{plan.name}</h3>
                 <p style={{ fontSize: 14, color: 'var(--text2)', lineHeight: 1.6, marginBottom: 24 }}>{plan.desc}</p>
                 <div style={{ marginBottom: 32 }}>

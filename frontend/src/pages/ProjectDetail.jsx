@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowRight, ArrowLeft, CheckCircle, AlertCircle } from 'lucide-react';
 import { contentAPI } from '../api';
+import VectorBackground from '../components/vectors/VectorBackground';
+import VectorProjectCardPreview from '../components/vectors/VectorProjectCardPreview';
 
 export default function ProjectDetail() {
   const { slug } = useParams();
@@ -36,8 +38,11 @@ export default function ProjectDetail() {
         padding: '60px 0',
         background: `linear-gradient(135deg, ${project.image_color}22 0%, transparent 60%)`,
         borderBottom: '1px solid var(--border)',
+        position: 'relative',
+        overflow: 'hidden',
       }}>
-        <div className="container">
+        <VectorBackground style={{ opacity: 0.35 }} />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <Link to="/work" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 14, color: 'var(--text2)', marginBottom: 24, textDecoration: 'none' }}>
             <ArrowLeft size={14} /> Back to Work
           </Link>
@@ -57,22 +62,18 @@ export default function ProjectDetail() {
         <div className="container">
           <div style={{
             height: 400,
-            background: `linear-gradient(135deg, ${project.image_color}33, ${project.image_color}11)`,
-            borderRadius: 20,
-            border: `1px solid ${project.image_color}33`,
+            background: `linear-gradient(135deg, ${project.image_color}22, ${project.image_color}08)`,
+            borderRadius: 24,
+            border: `1.5px solid ${project.image_color}33`,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            padding: 24,
+            boxShadow: '0 12px 40px rgba(0,0,0,0.06)'
           }}>
-            <div style={{ textAlign: 'center', color: 'var(--text2)' }}>
-              <div style={{ width: 200, height: 140, background: project.image_color + '22', border: `1px solid ${project.image_color}44`, borderRadius: 12, margin: '0 auto 16px', display: 'flex', flexDirection: 'column', gap: 6, padding: 16 }}>
-                <div style={{ display: 'flex', gap: 4 }}>{['#EF4444','#F59E0B','#10B981'].map(c => <span key={c} style={{ width: 8, height: 8, borderRadius: '50%', background: c }} />)}</div>
-                <div style={{ height: 6, background: project.image_color, borderRadius: 3, width: '50%', opacity: 0.9 }} />
-                <div style={{ height: 4, background: project.image_color + '55', borderRadius: 2 }} />
-                <div style={{ height: 4, background: project.image_color + '55', borderRadius: 2, width: '70%' }} />
-                <div style={{ flex: 1, background: project.image_color + '22', borderRadius: 8, marginTop: 4 }} />
-              </div>
-              <p style={{ fontSize: 13 }}>Project Preview — {project.title}</p>
+            <div style={{ width: '100%', maxWidth: 500, height: 320, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+              <VectorProjectCardPreview category={project.category} color={project.image_color || '#8A7361'} />
+              <p style={{ fontSize: 13, color: 'var(--text2)', marginTop: 8 }}>Interactive Preview — {project.title}</p>
             </div>
           </div>
         </div>

@@ -1,12 +1,16 @@
 import { ArrowRight, Code, PenTool, Zap, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import VectorBackground from '../components/vectors/VectorBackground';
+import AboutVectorScene from '../components/vectors/AboutVectorScene';
+import VectorWaveDivider from '../components/vectors/VectorWaveDivider';
 
 export default function About() {
   return (
     <div className="page-enter" style={{ paddingTop: 100 }}>
       {/* Hero */}
-      <section style={{ padding: '80px 0 60px', background: 'var(--bg2)', borderBottom: '1px solid var(--border)' }}>
-        <div className="container">
+      <section style={{ padding: '80px 0 60px', background: 'var(--bg2)', borderBottom: '1px solid var(--border)', position: 'relative', overflow: 'hidden' }}>
+        <VectorBackground style={{ opacity: 0.4 }} />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div className="section-label">About Us</div>
           <h1 style={{ fontSize: 'clamp(32px,5vw,56px)', marginBottom: 16 }}>We Build Digital Experiences.</h1>
           <p style={{ fontSize: 18, maxWidth: 680, color: 'var(--text2)', lineHeight: 1.8 }}>
@@ -15,10 +19,12 @@ export default function About() {
         </div>
       </section>
 
+      <VectorWaveDivider color="var(--bg2)" flip />
+
       {/* Story */}
-      <section className="section">
-        <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'center' }} className="about-grid">
+      <section className="section" style={{ position: 'relative' }}>
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 1.1fr', gap: 60, alignItems: 'center' }} className="about-grid">
             <div>
               <h2 style={{ fontSize: 32, marginBottom: 20 }}>Our Mission</h2>
               <p style={{ fontSize: 16, color: 'var(--text2)', lineHeight: 1.8, marginBottom: 16 }}>
@@ -35,25 +41,8 @@ export default function About() {
                 ))}
               </ul>
             </div>
-            <div style={{ background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 24, padding: 40 }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32 }}>
-                <div>
-                  <div style={{ marginBottom: 8, color: 'var(--accent)' }}><Code size={42} strokeWidth={2} /></div>
-                  <div style={{ color: 'var(--text2)', fontSize: 15, fontWeight: 500, lineHeight: 1.4 }}>Making websites with latest technology</div>
-                </div>
-                <div>
-                  <div style={{ fontSize: 42, fontWeight: 800, color: 'var(--accent2)', fontFamily: 'var(--font-heading)' }}>100%</div>
-                  <div style={{ color: 'var(--text2)', fontSize: 15, fontWeight: 500 }}>Client Satisfaction</div>
-                </div>
-                <div>
-                  <div style={{ marginBottom: 8, color: '#F59E0B' }}><Zap size={42} strokeWidth={2} /></div>
-                  <div style={{ color: 'var(--text2)', fontSize: 15, fontWeight: 500, lineHeight: 1.4 }}>Easy understanding</div>
-                </div>
-                <div>
-                  <div style={{ fontSize: 42, fontWeight: 800, color: '#10B981', fontFamily: 'var(--font-heading)' }}>24/7</div>
-                  <div style={{ color: 'var(--text2)', fontSize: 15, fontWeight: 500 }}>Support Provided</div>
-                </div>
-              </div>
+            <div>
+              <AboutVectorScene />
             </div>
           </div>
         </div>

@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Filter } from 'lucide-react';
 import { contentAPI } from '../api';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import VectorBackground from '../components/vectors/VectorBackground';
+import VectorWaveDivider from '../components/vectors/VectorWaveDivider';
+import VectorProjectCardPreview from '../components/vectors/VectorProjectCardPreview';
 
 const CATS = ['All', 'Portfolio', 'Business', 'Landing Page', 'AI', 'E-commerce', 'UI/UX'];
 
@@ -26,15 +29,19 @@ export default function Work() {
   return (
     <div className="page-enter" style={{ paddingTop: 100 }}>
       <style>{`@media(max-width:1024px){.work-pg{grid-template-columns:repeat(2,1fr)!important}}@media(max-width:640px){.work-pg{grid-template-columns:1fr!important}}`}</style>
-      <section style={{ padding: '80px 0 60px', background: 'var(--bg2)', borderBottom: '1px solid var(--border)' }}>
-        <div className="container">
+      <section style={{ padding: '80px 0 60px', background: 'var(--bg2)', borderBottom: '1px solid var(--border)', position: 'relative', overflow: 'hidden' }}>
+        <VectorBackground style={{ opacity: 0.4 }} />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div className="section-label">Portfolio</div>
           <h1 style={{ fontSize: 'clamp(32px,5vw,56px)', marginBottom: 16 }}>Our Work</h1>
           <p style={{ fontSize: 18, maxWidth: 560, color: 'var(--text2)' }}>A showcase of projects we've built for clients across different industries and use cases.</p>
         </div>
       </section>
-      <section className="section">
-        <div className="container">
+
+      <VectorWaveDivider color="var(--bg2)" flip />
+
+      <section className="section" style={{ position: 'relative' }}>
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div style={{ display: 'flex', gap: 8, marginBottom: 48, flexWrap: 'wrap' }}>
             {CATS.map(cat => (
               <button key={cat} onClick={() => filter(cat)} style={{ padding: '8px 20px', borderRadius: 100, fontSize: 14, fontWeight: 600, cursor: 'pointer', border: active === cat ? 'none' : '1px solid var(--border)', background: active === cat ? 'var(--accent)' : 'transparent', color: active === cat ? '#fff' : 'var(--text2)', transition: 'all .2s ease' }}>{cat}</button>
@@ -50,16 +57,11 @@ export default function Work() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 28 }} className="work-pg page-enter">
               {filtered.map(p => (
                 <Link key={p.id} to={`/work/${p.slug}`} style={{ textDecoration: 'none' }}>
-                  <div style={{ background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 20, overflow: 'hidden', transition: 'all .25s ease', height: '100%', display: 'flex', flexDirection: 'column' }}
-                    onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-6px)'; e.currentTarget.style.boxShadow = '0 20px 60px rgba(0,0,0,.4)'; e.currentTarget.style.borderColor = 'rgba(64,45,34,.3)'; }}
+                  <div className="vector-card-interactive" style={{ background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 20, overflow: 'hidden', transition: 'all .25s ease', height: '100%', display: 'flex', flexDirection: 'column' }}
+                    onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-6px)'; e.currentTarget.style.boxShadow = '0 20px 60px rgba(0,0,0,.15)'; e.currentTarget.style.borderColor = 'rgba(64,45,34,.3)'; }}
                     onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = ''; e.currentTarget.style.borderColor = 'var(--border)'; }}>
-                    <div style={{ height: 200, background: `linear-gradient(135deg,${p.image_color}44,${p.image_color}11)`, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-                      <div style={{ width: 120, height: 80, background: p.image_color + '22', border: `1px solid ${p.image_color}44`, borderRadius: 10, padding: 10, display: 'flex', flexDirection: 'column', gap: 5 }}>
-                        <div style={{ height: 5, background: p.image_color, borderRadius: 3, width: '50%', opacity: .9 }} />
-                        <div style={{ height: 3, background: p.image_color + '55', borderRadius: 2 }} />
-                        <div style={{ height: 3, background: p.image_color + '55', borderRadius: 2, width: '75%' }} />
-                        <div style={{ flex: 1, background: p.image_color + '22', borderRadius: 6, marginTop: 4 }} />
-                      </div>
+                    <div style={{ height: 180, background: `linear-gradient(135deg,${p.image_color}22,${p.image_color}08)`, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+                      <VectorProjectCardPreview category={p.category} color={p.image_color || '#8A7361'} />
                       {p.featured === 1 && <span style={{ position: 'absolute', top: 12, right: 12, fontSize: 10, fontWeight: 700, background: 'rgba(64,45,34,.9)', color: '#fff', padding: '3px 8px', borderRadius: 4 }}>Featured</span>}
                     </div>
                     <div style={{ padding: 20, flex: 1, display: 'flex', flexDirection: 'column' }}>

@@ -3,6 +3,8 @@ import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { projectsAPI } from '../api';
 import { CheckCircle, ArrowRight, ArrowLeft, AlertCircle } from 'lucide-react';
+import VectorBackground from '../components/vectors/VectorBackground';
+import ProcessStepVector from '../components/vectors/ProcessStepVector';
 
 const SERVICES = ['Portfolio Website','Business Website','Landing Page','E-commerce Website','AI Website','Custom Web Application','UI/UX Design','Website Redesign','Other'];
 const DESIGN_PREFS = ['Minimal','Modern','Premium','Creative','Corporate','Dark','Light'];
@@ -82,10 +84,11 @@ export default function StartProject() {
   // ── Success screen
   if (success) {
     return (
-      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '100px 24px', background: 'var(--bg)' }}>
-        <div style={{ textAlign: 'center', maxWidth: 480 }}>
-          <div style={{ width: 80, height: 80, background: 'rgba(37,211,102,.12)', border: '1px solid rgba(37,211,102,.3)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
-            <CheckCircle size={40} color="#25D366" />
+      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '100px 24px', background: 'var(--bg)', position: 'relative', overflow: 'hidden' }}>
+        <VectorBackground style={{ opacity: 0.4 }} />
+        <div style={{ textAlign: 'center', maxWidth: 480, position: 'relative', zIndex: 1 }}>
+          <div style={{ width: 88, height: 88, background: 'rgba(37,211,102,.12)', border: '1px solid rgba(37,211,102,.3)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px', boxShadow: '0 8px 30px rgba(37,211,102,0.2)' }}>
+            <ProcessStepVector stepNumber={5} size={64} />
           </div>
           <h1 style={{ fontSize: 32, marginBottom: 12 }}>Ready to Send! 🚀</h1>
           <p style={{ fontSize: 17, color: 'var(--text2)', marginBottom: 28 }}>Your project details are ready. Choose a number below to send your request via WhatsApp.</p>
@@ -108,8 +111,9 @@ export default function StartProject() {
   const progress = ((step - 1) / 5) * 100;
 
   return (
-    <div style={{ minHeight: '100vh', paddingTop: 100, background: 'var(--bg)' }}>
-      <div className="container" style={{ maxWidth: 700, padding: '60px 24px' }}>
+    <div style={{ minHeight: '100vh', paddingTop: 100, background: 'var(--bg)', position: 'relative', overflow: 'hidden' }}>
+      <VectorBackground style={{ opacity: 0.35 }} />
+      <div className="container" style={{ maxWidth: 700, padding: '60px 24px', position: 'relative', zIndex: 1 }}>
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: 40 }}>
           <div className="section-label" style={{ justifyContent: 'center', marginBottom: 12 }}>Start a Project</div>
